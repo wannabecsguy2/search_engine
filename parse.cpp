@@ -5,6 +5,13 @@ map<int,map<string,float>> overall_term_frequency;
 map<string,int> inverted_document_count;
 map<string,float> inverted_document_frequency;
 using namespace std;
+struct Document
+{
+    int documentID;
+    string content;
+    string url;
+    string title;
+};
 void parse_page(string str,int documentID)
 {
     stringstream s(str); 
@@ -51,11 +58,11 @@ void search_word(string word)
     {
         float tf=overall_term_frequency[it][word];
         float idf=inverted_document_frequency[word];
-        score=tf*idf;
+        float score=tf*idf;
         scores[it]=score;
     }
     for (auto it = scores.rbegin(); it != scores.rend(); it++) {
-        cout<<"Document ID: "<<it.first<<" Score: "<<it.second<<endl;
+        cout<<"Document ID: "<<it->first<<" Score: "<<it->second<<endl;
     }
 }
 int main()
@@ -63,7 +70,7 @@ int main()
     vector<string> documents;
     vector<int> documentIDs;
     parse_documents(documents,documentIDs);
-    search_word("")
+    search_word("");
     
 
 }
