@@ -1,3 +1,3 @@
 import wikipedia
-ny = wikipedia.page("New York")
+ny = wikipedia.page("New York City")
 print(ny.content)
